@@ -1,6 +1,6 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { FC } from "react";
-import { apiUrl } from "../../helpers";
+import { findPostById, getAllPosts } from "../../../mock/db";
 
 interface Props {
   post: Post;
@@ -16,18 +16,26 @@ const PostPage: FC<Props> = ({ post }) => (
   </main>
 );
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const { postId } = context.params;
 
-  const res = await fetch(
-    `${apiUrl(context)}/api/posts/${postId}`,
-  );
-  const { post } = await res.json();
+  const post = await findPostById(postId as string);
 
   return {
     props: {
       post,
     },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getAllPosts();
+
+  return {
+    paths: posts.map((post) => ({
+      params: { postId: post.id },
+    })),
+    fallback: false,
   };
 };
 

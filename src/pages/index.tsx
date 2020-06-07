@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { FC } from "react";
 import PostCard from "../components/PostCard";
-import { apiUrl } from "../helpers";
+import { getAllPosts } from "../../mock/db";
 
 interface Props {
   posts: Post[];
@@ -20,9 +20,8 @@ const Home: FC<Props> = ({ posts }) => (
   </main>
 );
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${apiUrl(context)}/api/posts`);
-  const { posts } = await res.json();
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await getAllPosts();
 
   return {
     props: {
