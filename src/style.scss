@@ -1,0 +1,94 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
+  color: #333;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+nav {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  a {
+    color: #0070f3;
+  }
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 2rem;
+}
+
+.post-card {
+  display: grid;
+  grid-template-rows: 10rem 1fr;
+  gap: 0.5rem;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+.post {
+  display: grid;
+  gap: 1.5rem;
+  img {
+    width: 100%;
+    max-height: 32rem;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
